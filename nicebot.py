@@ -18,7 +18,7 @@ def start(message):
                                             "/rates - get actual exchange rates\n"
                                             "/zcash - get actual ZCash Balance\n"
                                             "/block - get your Blockchain wallet balance\n"
-                                            "/tw - check TeamViewer Status \n"
+                                            "/tw - TeamViewer Status\n"                                            
                                             "\n"                
                                             "-----------NiceHash-----------\n"
                                             "/speed - worker's actual speed \n"
