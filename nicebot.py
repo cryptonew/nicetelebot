@@ -11,33 +11,32 @@ bot = telebot.TeleBot(config.TOKEN)
 
 @bot.message_handler(commands=["start","hello","hi","help"])
 def start(message):
-    bot.send_message(message.chat.id, "Hello, I\'m Telegram Bot.\n"
+    bot.send_message(message.chat.id, "Hello, I\'m Telegram Bot. \n"
                                             "The list of commands are:\n"
-                                            "/help       - list of commands\n"
-                                            "/speed      - worker's actual speed\n"
-                                            "/uptime     - worker's uptime\n"
-                                            "/cats       - get random cat and have fun\n"
-#                                            "/ratebtc    - get BTC actual exchange rate\n"
-#                                            "/ratezec    - get ZEC actual exchange rate\n"
-                                            "/nice   - get your Nicehash balance\n"
+                                            "/help - list of commands\n"
+                                            "/cats - get random cat and have fun\n"
+                                            "/rates - get actual exchange rates\n"
+                                            "/zcash - get actual ZCash Balance\n"
                                             "/block - get your Blockchain wallet balance\n"
-                                            "/balance    - Blockchain + Nicehash amount\n"
-#                                            "/profit    - get AVG Profit for 24 hour\n"
-                                            "/rates   - get actual exchange rates\n"
-				            "/zcash    - get actual ZCash Balance\n"
-                                            "/hashrate   - get workers speed \n"
-                                            "/avghash   - get AVG speed NanoPool\n"
-					    "/monstop \n"
-					    "/nicemonstop - Stop Monitoring\n"
-					    "/monstart \n"
-					    "/nicemonstart - Start Monitoring\n"
-                                           # "/picture    - get a pciture and relax\n"
+                                            "/tw - check TeamViewer Status"
+                                            "\n"                
+                                            "-----------NiceHash-----------"
+                                            "/speed - worker's actual speed \n"
+                                            "/uptime - worker's uptime \n"                                                                                
+                                            "/profit - get AVG Profit for 24 hour \n"
+                                            "/nice - get your Nicehash balance \n"
+                                            "/nicemonstart - Start Monitoring \n"
+                                            "/nicemonstop - Stop Monitoring \n"
+                                            "\n"
+                                            "-----------NanoPool-----------"                                        				                            
+                                            "/hashrate - get workers speed \n"
+                                            "/avghash  - get AVG speed \n"
+					                        "/monstop - Stop Monitoring \n"					                
+					                        "/monstart - Start Monitoring\ n"
                                             )
-#bot.register_next_step_handler(msg,hello)
 
 
-#def hello(message):
-    #bot.send_message(message.chat.id, 'Hello, {name}! Nice to meet you'.format(name=message.text))
+
 
 @bot.message_handler(commands=["monstop"])
 def monstop(message):
@@ -231,31 +230,11 @@ def balance(message):
                                      "BTC = " + str(btcfull) + "\n"
                                      "USD = $ " + str(usd))
 
-@bot.message_handler(commands=["petya"])
-def petya(message):
-    url = "https://blockchain.info/q/addressbalance/" + petyabtc
-    resp = requests.get(url=url)
-    btc = float(resp.text) / 100000000
-    ratebtc = btcrate()
-    usd = "%.2f" % (btc * ratebtc)
-    bot.send_message(message.chat.id, "BTC = " + str(btc) +"\n"
-                                    "USD = $ " + str(usd))
-
-
-
 
 @bot.message_handler(commands=["cats"])
 def cats(message):
     query = str(random.randint(1, 99))
     link = 'http://thecatapi.com/api/images/get?format=src&type=gif&random=' + query
-    bot.send_photo(message.chat.id, photo=link)
-
-
-
-@bot.message_handler(commands=["picture"])
-def picture(message):
-    query = str(random.randint(1,95))
-    link = "http://loremflickr.com/320/240/hot,girl,sex/all?random=" + query
     bot.send_photo(message.chat.id, photo=link)
 
 
