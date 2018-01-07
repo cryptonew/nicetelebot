@@ -17,46 +17,73 @@ def start(message):
                                             "/cats - get random cat and have fun\n"
                                             "/rates - get actual exchange rates\n"
                                             "/zcash - get actual ZCash Balance\n"
-                                            "/tw - TeamViewer Status\n"                                            
+                                            "/tw - TeamViewer Status\n"    
+                                            #"/monstatus - Monitoring Status \n"
+                                            "/monstopall - Stop All Monitoring \n"
                                             "\n"                
                                             "-----------NiceHash-----------\n"
                                             "/speed - worker's actual speed \n"
                                             "/uptime - worker's uptime \n"                                                                                
                                             "/nice - get your Nicehash balance \n"
-                                            "/nicemonstart - Start Monitoring \n"
-                                            "/nicemonstop - Stop Monitoring \n"
+                                            "/nice_monstart - Start Monitoring \n"
+                                            "/nice_monstop - Stop Monitoring \n"
                                             "\n"
                                             "-----------NanoPool_ZEC-----------\n"                                        				                            
-                                            "/hashrate - get workers speed \n"
-                                            "/avghash  - get AVG speed \n"
-					                        "/zecmonstop - Stop Monitoring \n"					                
-					                        "/zecmonstart - Start Monitoring \n"
+                                            #"/zec_hashrate - get workers speed \n"
+                                            #"/zec_avghash  - get AVG speed \n"
+					                        "/zec_monstop - Stop Monitoring \n"					                
+					                        "/zec_monstart - Start Monitoring \n"
                                             "\n"
                                             "-----------NanoPool_XFX-----------\n"                                                                                  
-                                            "/hashrate - get workers speed \n"
-                                            "/avghash  - get AVG speed \n"
-                                            "/monstop - Stop Monitoring \n"                                 
-                                            "/monstart - Start Monitoring\ n"
+                                            #"/xfx_hashrate - get workers speed \n"
+                                            #"/xfx_avghash  - get AVG speed \n"
+                                            "/xfx_monstop - Stop Monitoring \n"                                 
+                                            "/xfx_monstart - Start Monitoring \n"
                                             "\n"
-                                            "-----------NanoPool_SAPHIRE-----------\n"
-                                            "\n"                                                                                  
-                                            "/hashrate - get workers speed \n"
-                                            "/avghash  - get AVG speed \n"
-                                            "/monstop - Stop Monitoring \n"                                 
-                                            "/monstart - Start Monitoring \n"
+                                            "-----------NanoPool_SAPHIRE-----------\n"                                                                               
+                                            #"/saph_hashrate - get workers speed \n"
+                                            #"/saph_avghash  - get AVG speed \n"
+                                            "/saph_monstop - Stop Monitoring \n"                                 
+                                            "/saph_monstart - Start Monitoring \n"
                                             )
 
 
-@bot.message_handler(commands=["zecmonstop"])
+@bot.message_handler(commands=["zec_monstop"])
 def zecmonstop(message):
-    os.system("crontab -l | sed '/^[^#].*nanopool.*/s/^/#/' | crontab -")
+    os.system("crontab -l | sed '/^[^#].*zecnanomonitor.*/s/^/#/' | crontab -")
     bot.send_message(message.chat.id, "Zec Monitoring Stopped")
 
 
-@bot.message_handler(commands=["zecmonstart"])
+@bot.message_handler(commands=["zec_monstart"])
 def zecmonstart(message):
-    os.system("crontab -l | sed '/^#.*nanopool.*/s/^#//' | crontab -")
+    os.system("crontab -l | sed '/^#.*zecnanomonitor.*/s/^#//' | crontab -")
     bot.send_message(message.chat.id, "Zec Monitoring Started")
+
+
+@bot.message_handler(commands=["xfx_monstop"])
+def zecmonstop(message):
+    os.system("crontab -l | sed '/^[^#].*xfxnanomonitor.*/s/^/#/' | crontab -")
+    bot.send_message(message.chat.id, "Zec Monitoring Stopped")
+
+
+@bot.message_handler(commands=["xfx_monstart"])
+def zecmonstart(message):
+    os.system("crontab -l | sed '/^#.*xfxnanomonitor.*/s/^#//' | crontab -")
+    bot.send_message(message.chat.id, "Zec Monitoring Started")
+
+
+
+@bot.message_handler(commands=["saph_monstop"])
+def zecmonstop(message):
+    os.system("crontab -l | sed '/^[^#].*saphirenanomon.*/s/^/#/' | crontab -")
+    bot.send_message(message.chat.id, "Zec Monitoring Stopped")
+
+
+@bot.message_handler(commands=["saph_monstart"])
+def zecmonstart(message):
+    os.system("crontab -l | sed '/^#.*saphirenanomon.*/s/^#//' | crontab -")
+    bot.send_message(message.chat.id, "Zec Monitoring Started")
+
 
 
 @bot.message_handler(commands=["nicemonstop"])
@@ -69,6 +96,15 @@ def nicemonstop(message):
 def nicemonstart(message):
     os.system("crontab -l | sed '/^#.*nicehash.*/s/^#//' | crontab -")
     bot.send_message(message.chat.id, "Nice Monitoring Started")
+
+
+@bot.message_handler(commands=["nicemonstop"])
+def nicemonstop(message):
+    os.system("crontab -l | sed '/^[^#].*nicehash.*/s/^/#/' | crontab -")
+    os.system("crontab -l | sed '/^[^#].*saphirenanomon.*/s/^/#/' | crontab -")
+    os.system("crontab -l | sed '/^[^#].*xfxnanomonitor.*/s/^/#/' | crontab -")
+    os.system("crontab -l | sed '/^#.*zecnanomonitor.*/s/^#//' | crontab -")
+    bot.send_message(message.chat.id, "ALL Monitoring Disabled !")
 
 
 @bot.message_handler(commands=["tw"])
@@ -99,6 +135,14 @@ def speed(message):
     for i in list1:
         output = output + str(i) + "\n"
     bot.send_message(message.chat.id, output)
+
+
+
+@bot.message_handler(commands=["zec_hashrate"])
+def zec_hashrate():
+    value = "Zec"
+
+
 
 @bot.message_handler(commands=["hashrate"])
 def hashrate(message):
