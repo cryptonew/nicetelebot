@@ -31,20 +31,20 @@ def start(message):
                                             "-----------NanoPool_ZEC-----------\n"                                        				                            
                                             #"/zec_hashrate - get workers speed \n"
                                             #"/zec_avghash  - get AVG speed \n"
-   		                            "/zec_monstop - Stop Monitoring \n"					                
- 		                            "/zec_monstart - Start Monitoring \n"
+                                            "/zec_monstart - Start Monitoring \n"
+                                            "/zec_monstop - Stop Monitoring \n"					                                                       
                                             "\n"
                                             "-----------NanoPool_XFX-----------\n"                                                                                  
                                             #"/xfx_hashrate - get workers speed \n"
                                             #"/xfx_avghash  - get AVG speed \n"
-                                            "/xfx_monstop - Stop Monitoring \n"                                 
                                             "/xfx_monstart - Start Monitoring \n"
+                                            "/xfx_monstop - Stop Monitoring \n"                                 
                                             "\n"
                                             "-----------NanoPool_SAPHIRE-----------\n"                                                                               
                                             #"/saph_hashrate - get workers speed \n"
                                             #"/saph_avghash  - get AVG speed \n"
-                                            "/saph_monstop - Stop Monitoring \n"                                 
                                             "/saph_monstart - Start Monitoring \n"
+                                            "/saph_monstop - Stop Monitoring \n"                                 
                                             )
 
 
@@ -63,39 +63,39 @@ def zecmonstart(message):
 @bot.message_handler(commands=["xfx_monstop"])
 def zecmonstop(message):
     os.system("crontab -l | sed '/^[^#].*xfxnanomonitor.*/s/^/#/' | crontab -")
-    bot.send_message(message.chat.id, "Zec Monitoring Stopped")
+    bot.send_message(message.chat.id, "XFX Monitoring Stopped")
 
 
 @bot.message_handler(commands=["xfx_monstart"])
 def zecmonstart(message):
     os.system("crontab -l | sed '/^#.*xfxnanomonitor.*/s/^#//' | crontab -")
-    bot.send_message(message.chat.id, "Zec Monitoring Started")
+    bot.send_message(message.chat.id, "XFX Monitoring Started")
 
 
 
 @bot.message_handler(commands=["saph_monstop"])
 def zecmonstop(message):
     os.system("crontab -l | sed '/^[^#].*saphirenanomon.*/s/^/#/' | crontab -")
-    bot.send_message(message.chat.id, "Zec Monitoring Stopped")
+    bot.send_message(message.chat.id, "Saphire Monitoring Stopped")
 
 
 @bot.message_handler(commands=["saph_monstart"])
 def zecmonstart(message):
     os.system("crontab -l | sed '/^#.*saphirenanomon.*/s/^#//' | crontab -")
-    bot.send_message(message.chat.id, "Zec Monitoring Started")
+    bot.send_message(message.chat.id, "Saphire Monitoring Started")
 
 
 
 @bot.message_handler(commands=["nice_monstop"])
 def nicemonstop(message):
     os.system("crontab -l | sed '/^[^#].*nicehash.*/s/^/#/' | crontab -")
-    bot.send_message(message.chat.id, "Nice Monitoring Stopped")
+    bot.send_message(message.chat.id, "NiceHash Monitoring Stopped")
 
 
 @bot.message_handler(commands=["nice_monstart"])
 def nicemonstart(message):
     os.system("crontab -l | sed '/^#.*nicehash.*/s/^#//' | crontab -")
-    bot.send_message(message.chat.id, "Nice Monitoring Started")
+    bot.send_message(message.chat.id, "NiceHash Monitoring Started")
 
 
 @bot.message_handler(commands=["monstopall"])
