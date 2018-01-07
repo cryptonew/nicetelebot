@@ -98,7 +98,7 @@ def nicemonstart(message):
     bot.send_message(message.chat.id, "Nice Monitoring Started")
 
 
-@bot.message_handler(commands=["nicemonstop"])
+@bot.message_handler(commands=["monstopall"])
 def nicemonstop(message):
     os.system("crontab -l | sed '/^[^#].*nicehash.*/s/^/#/' | crontab -")
     os.system("crontab -l | sed '/^[^#].*saphirenanomon.*/s/^/#/' | crontab -")
