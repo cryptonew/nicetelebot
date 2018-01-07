@@ -103,7 +103,7 @@ def nicemonstop(message):
     os.system("crontab -l | sed '/^[^#].*nicehash.*/s/^/#/' | crontab -")
     os.system("crontab -l | sed '/^[^#].*saphirenanomon.*/s/^/#/' | crontab -")
     os.system("crontab -l | sed '/^[^#].*xfxnanomonitor.*/s/^/#/' | crontab -")
-    os.system("crontab -l | sed '/^#.*zecnanomonitor.*/s/^#//' | crontab -")
+    os.system("crontab -l | sed '/^[^#].*zecnanomonitor.*/s/^/#/' | crontab -")
     bot.send_message(message.chat.id, "ALL Monitoring Disabled !")
 
 
