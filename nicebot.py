@@ -86,13 +86,13 @@ def zecmonstart(message):
 
 
 
-@bot.message_handler(commands=["nicemonstop"])
+@bot.message_handler(commands=["nice_monstop"])
 def nicemonstop(message):
     os.system("crontab -l | sed '/^[^#].*nicehash.*/s/^/#/' | crontab -")
     bot.send_message(message.chat.id, "Nice Monitoring Stopped")
 
 
-@bot.message_handler(commands=["nicemonstart"])
+@bot.message_handler(commands=["nice_monstart"])
 def nicemonstart(message):
     os.system("crontab -l | sed '/^#.*nicehash.*/s/^#//' | crontab -")
     bot.send_message(message.chat.id, "Nice Monitoring Started")
