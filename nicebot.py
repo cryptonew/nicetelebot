@@ -368,7 +368,7 @@ def profit():
     profitbtcday = profitability * acceptedspeed
     return profitbtcday
 
-def nanoStats():
+def nanoStats(url):
     # query the nicehash API and check worker's status
     resp = requests.get(url=url, verify=False)
     stats = json.loads(resp.text)
