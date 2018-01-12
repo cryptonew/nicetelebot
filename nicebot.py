@@ -29,19 +29,19 @@ def start(message):
                                             "/nice_monstop - Stop Monitoring \n"
                                             "\n"
                                             "-----------NanoPool_ZEC-----------\n"                                        				                            
-                                            #"/zec_hashrate - get workers speed \n"
+                                            "/zec_hashrate - get workers speed \n"
                                             #"/zec_avghash  - get AVG speed \n"
                                             "/zec_monstart - Start Monitoring \n"
                                             "/zec_monstop - Stop Monitoring \n"					                                                       
                                             "\n"
                                             "-----------NanoPool_XFX-----------\n"                                                                                  
-                                            #"/xfx_hashrate - get workers speed \n"
+                                            "/xfx_hashrate - get workers speed \n"
                                             #"/xfx_avghash  - get AVG speed \n"
                                             "/xfx_monstart - Start Monitoring \n"
                                             "/xfx_monstop - Stop Monitoring \n"                                 
                                             "\n"
                                             "-----------NanoPool_SAPHIRE-----------\n"                                                                               
-                                            #"/saph_hashrate - get workers speed \n"
+                                            "/saph_hashrate - get workers speed \n"
                                             #"/saph_avghash  - get AVG speed \n"
                                             "/saph_monstart - Start Monitoring \n"
                                             "/saph_monstop - Stop Monitoring \n"                                 
@@ -139,14 +139,21 @@ def speed(message):
 
 
 @bot.message_handler(commands=["zec_hashrate"])
-def zec_hashrate():
-    value = "Zec"
+def zec_hashrate(message):
+    nanourl = 'https://api.nanopool.org/v1/zec/workers/' + zecAddress
+    output = hashrate(nanourl)
+    bot.send_message(message.chat.id, output)
 
 
+@bot.message_handler(commands=["zec_avghash"])
+def zec_avghash(message):
+    nanourl = 'https://api.nanopool.org/v1/zec/user/' + zecAddress
+    output = avghash(nanourl)
+    bot.send_message(message.chat.id, output)
 
-@bot.message_handler(commands=["hashrate"])
-def hashrate(message):
-    stats = nanoStats()
+
+def hashrate(url):
+    stats = nanoStats(url)
     a = ""
     list1 = []
     for worker in stats['data']:
@@ -156,12 +163,11 @@ def hashrate(message):
     output = ""
     for i in list1:
         output = output + str(i) + "\n"
-    bot.send_message(message.chat.id, output)
+    return output
 
 
-@bot.message_handler(commands=["avghash"])
-def avghash(message):
-    stats = getHash()
+def avghash(url):
+    stats = nanoStats(url)
     o = "AVG HasRate at NanoPool:"
     s = ""
     a = "now = " + str(stats['data']['hashrate'])
@@ -174,7 +180,7 @@ def avghash(message):
     output = ""
     for i in list1:
         output = output + str(i) + "\n"
-    bot.send_message(message.chat.id, output)
+    return output
 
 
 @bot.message_handler(commands=["uptime"])
@@ -364,19 +370,10 @@ def profit():
 
 def nanoStats():
     # query the nicehash API and check worker's status
-    url = 'https://api.nanopool.org/v1/zec/workers/' + zecAddress
-
     resp = requests.get(url=url, verify=False)
     stats = json.loads(resp.text)
     return stats
 
-def getHash():
-    # query the nicehash API and check worker's status
-    url = 'https://api.nanopool.org/v1/zec/user/' + zecAddress
-
-    resp = requests.get(url=url, verify=False)
-    stats = json.loads(resp.text)
-    return stats
 
 def getZec():
     # query the nicehash API and check worker's status
