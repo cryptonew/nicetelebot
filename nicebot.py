@@ -142,6 +142,18 @@ def speed(message):
 def zec_hashrate(message):
     nanourl = 'https://api.nanopool.org/v1/zec/workers/' + zecAddress
     output = hashrate(nanourl)
+    #bot.send_message(message.chat.id, output)
+
+@bot.message_handler(commands=["xfx_hashrate"])
+def xfx_hashrate(message):
+    nanourl = 'https://api.nanopool.org/v1/eth/workers/' + xfxAddress
+    output = hashrate(nanourl)
+    bot.send_message(message.chat.id, output)
+
+@bot.message_handler(commands=["saph_hashrate"])
+def saph_hashrate(message):
+    nanourl = 'https://api.nanopool.org/v1/eth/workers/' + saphAddress
+    output = hashrate(nanourl)
     bot.send_message(message.chat.id, output)
 
 
