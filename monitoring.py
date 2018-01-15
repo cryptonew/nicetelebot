@@ -1,5 +1,4 @@
 # This module describe monitoring for Different Pools
-import config
 import os
 import re
 
