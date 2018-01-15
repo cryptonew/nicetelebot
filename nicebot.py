@@ -5,6 +5,8 @@ from config import *
 import requests,json
 import random
 import os
+import monitoring
+
 requests.packages.urllib3.disable_warnings()
 
 bot = telebot.TeleBot(config.TOKEN)
@@ -18,7 +20,7 @@ def start(message):
                                             "/rates - get actual exchange rates\n"
                                             "/zcash - get actual ZCash Balance\n"
                                             "/tw - TeamViewer Status\n"    
-                                            #"/monstatus - Monitoring Status \n"
+                                            "/monstatus - Monitoring Status \n"
                                             "/monstopall - Stop All Monitoring \n"
                                             "\n"                
                                             "-----------NiceHash-----------\n"
@@ -107,6 +109,12 @@ def nicemonstop(message):
     bot.send_message(message.chat.id, "ALL Monitoring Disabled !")
 
 
+@bot.message_handler(commands=["monstatus"])
+def monstatus(message):
+    output = monitoring.grepmonitor()
+    bot.send_message(message.chat.id, output)
+
+
 @bot.message_handler(commands=["tw"])
 def teamviewer(message):
 
@@ -142,7 +150,7 @@ def speed(message):
 def zec_hashrate(message):
     nanourl = 'https://api.nanopool.org/v1/zec/workers/' + zecAddress
     output = hashrate(nanourl)
-    #bot.send_message(message.chat.id, output)
+    bot.send_message(message.chat.id, output)
 
 @bot.message_handler(commands=["xfx_hashrate"])
 def xfx_hashrate(message):
