@@ -38,8 +38,6 @@ def grepmonitor():
         d = "SAPH Nano Monitor - ENABLED"
         list1.append(d)
 
-    print list1
-
     for i in list1:
         output = output + str(i) + "\n"
     return output
